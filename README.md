@@ -10,7 +10,7 @@ Este repositorio contiene el proyecto de Machine Learning basado en un **Percept
 | --- | --- |
 | **@FatZuack** (Francisco Salazar) | Autor del notebook optimizado (`notebookCorregidoMLP3Capas(FRANCISCO) (1).ipynb`), desarrollado en la rama `feature/mlp-francisco`. |
 | **@Gabriel1-du** (Gabriel Duran) | Autor de los notebooks `NotebookMLPLay3.ipynb` y `notebookMLPPat2Lay3.ipynb`. El resto del trabajo se realizó en la rama `master`. |
-| **Martín Higuera** | Integrante del equipo; autor de la presentación (`4. Presentacion.ipynb`), documentación y guion de live coding. |
+| **@snozzono** (Martín Higuera) | Integrante del equipo; autor de la presentación (`4. Presentacion.ipynb`), documentación y guion de live coding. |
 
 ---
 
