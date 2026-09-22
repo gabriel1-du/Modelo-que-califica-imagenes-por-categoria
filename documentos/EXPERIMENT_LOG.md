@@ -17,6 +17,7 @@
 | **EXP-01 (Línea Base)** | 512 - 256 - 128 (`ReLU`) | BatchNorm + Dropout + DA moderado (flip, rotación leve, zoom) | ~22 (EarlyStopping) | 61.20% | 63.80% | 63.87% | 0.63 | **Óptimo.** Generalización controlada, sin sobreajuste. |
 | **EXP-02 (Sobredimensionado)** | 768 - 384 - 192 (`GELU`) | BatchNorm + Dropout (sin Data Augmentation) | 17 (Corte temprano) | 71.14% | 62.72% | 59.00% | 0.58 | **Fallido por Overfitting.** Brecha de ~12% entre train y test. |
 | **EXP-03 (Reproducción Limpia)** | 512 - 256 - 128 (`ReLU`) | BatchNorm + Dropout + DA moderado | 21 (EarlyStopping) | 61.80% | 63.95% | **64.47%** | **0.64** | **Configuración Final.** Máximo rendimiento empírico validado. |
+| **EXP-04 (Test ciego · Presentación)** | 512 - 256 - 128 (`ReLU`) | BatchNorm + Dropout (30/25/20) + DA moderado · **semilla 42** · split **80/20 de `seg_train`** | 24 (EarlyStopping, mejor en época 17) | 60.20% | 71.24% | **62.37%** | **0.61** | **Configuración de presentación.** `seg_test` evaluado una sola vez; la validación ya no toca el examen. La caída frente a EXP-03 es evidencia de que las métricas anteriores estaban infladas. |
 
 ---
 
@@ -46,8 +47,19 @@
 ---
 
 ## 4. Conclusión Técnica Final
-Se adopta la arquitectura **EXP-03** como el modelo definitivo del proyecto:
-- **Test Accuracy:** 64.47%
-- **Test Loss:** 0.9521
-- **Macro F1-Score:** 0.64
-- **Brecha Train/Validation:** < 3% (Cumple con el criterio de sobreajuste de la rúbrica).
+
+Se adopta **EXP-04** como la corrida de referencia del **notebook de presentación** (`4. Presentacion.ipynb`), por ser la metodológicamente más estricta:
+
+- **Particionado:** 80/20 sobre `seg_train` (11.228 / 2.806, semilla 42) + `seg_test` (3.000) como examen final ciego.
+- **Test Accuracy:** 62.37% (>60% ✅)
+- **Test Loss:** 1.0155 (meta <1.0000 ❌ — a 1.6% de la meta)
+- **Macro F1-Score:** 0.61 (≥0.60 ✅)
+- **Brecha Train/Test:** 2.17% (60.20% vs 62.37%) — cumple el criterio de sobreajuste de la rúbrica.
+- **Tiempo por época:** ~40 s (<60 s ✅)
+- **Épocas:** 24 de 50; `EarlyStopping` paró en la 17 (mejor `val_loss` 0.8012) y restauró esos pesos.
+
+**4 de 5 KPIs cumplidos.**
+
+> **Nota sobre EXP-03 (64.47%):** se mantiene en el registro como resultado **histórico** de la variante con validación sobre `seg_train` y hiperparámetros lr=0.0008 / 40 épocas. **No es directamente comparable** con EXP-04 porque el protocolo de evaluación es distinto.
+
+> **Por qué se reporta un número menor:** la exactitud bajó de 64.13% a 62.37% al separar la validación del examen. Esa caída de **1.76 puntos** no es un retroceso técnico: es la **evidencia empírica de que la métrica anterior estaba inflada**. Un número menor pero honesto defiende mejor que uno mayor con la validación contaminada.

@@ -1,0 +1,11 @@
+# Copia de trabajo que el notebook regenera solo desde dataset/ (405 MB)
+/copy/
+
+# Artefactos de Jupyter / Python
+.ipynb_checkpoints/
+__pycache__/
+*.pyc
+
+# Entornos virtuales
+.venv/
+venv/
