@@ -1,0 +1,7 @@
+[33mff4b4d3[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m feat: entrega final del proyecto MLP en Presentacion.ipynb
+[33m9c7b09f[m[33m ([m[1;31morigin/feature/mlp-francisco[m[33m)[m docs: actualizar README con metricas finales 64.47% y enlaces a bitacoras
+[33md741919[m docs: agregar analisis comparativo entre rama gabriel y rama francisco
+[33m3709d89[m docs: agregar bitacora de experimentacion y analisis de errores (MLP)
+[33m742b686[m docs: actualizar metricas de ejecucion completa MLP (accuracy 0.6447, macro F1 0.64)
+[33m8f62e6e[m Add project overview and key improvements to README
+[33ma33ee4e[m feat: optimiza MLP a 64x64 (512-256-128 con BatchNorm y Dropout) y añade KPIs, análisis de errores, limitaciones y conclusiones para la rúbrica
